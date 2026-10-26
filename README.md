@@ -13,6 +13,12 @@ or explore [Data Analytics](https://github.com/Avaldez77/Data-Analytics-Portafol
 [Data Science](https://github.com/Avaldez77/Data-science-Portafolio), and
 [RPA & Process Automation](https://github.com/Avaldez77/RPAs-Portafolio).
 
+## Featured end-to-end case
+
+[Capital Bikeshare Demand Intelligence](https://github.com/Avaldez77/BikeShare-Demand-Intelligence)
+uses an attributed public dataset to build a DuckDB warehouse, quality gate,
+daily KPIs, forecast evaluation, and a dry-run report package.
+
 ## Areas
 
 | Area | Topics |
