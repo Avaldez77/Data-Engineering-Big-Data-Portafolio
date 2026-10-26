@@ -5,6 +5,14 @@ pipeline validation, event processing, and distributed-data concepts. The
 examples are learning artifacts and case studies; they do not claim measured
 production throughput or access to company systems.
 
+## Connected portfolio
+
+This repository covers the data platform and pipeline layer of a four-part
+portfolio. See the [profile overview](https://github.com/Avaldez77/Avaldez77)
+or explore [Data Analytics](https://github.com/Avaldez77/Data-Analytics-Portafolio),
+[Data Science](https://github.com/Avaldez77/Data-science-Portafolio), and
+[RPA & Process Automation](https://github.com/Avaldez77/RPAs-Portafolio).
+
 ## Areas
 
 | Area | Topics |
