@@ -1,0 +1,19 @@
+name: Exercise checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  daily-event-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run SQL pipeline tests
+        run: python -m unittest discover -s "Exercises/Daily Event Quality/tests" -v
+      - name: Run exercise
+        working-directory: Exercises/Daily Event Quality
+        run: python run_demo.py
