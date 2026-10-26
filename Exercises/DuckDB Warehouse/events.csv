@@ -1,0 +1,8 @@
+event_id,event_timestamp,service,status_code,duration_ms
+evt-001,2026-01-01T09:00:00,checkout,200,120
+evt-002,2026-01-01T09:05:00,checkout,503,300
+evt-002,2026-01-01T09:06:00,checkout,200,110
+evt-003,2026-01-02T10:00:00,inventory,500,900
+evt-004,not-a-timestamp,inventory,200,200
+evt-005,2026-01-02T10:30:00,,200,80
+evt-006,2026-01-02T10:45:00,payments,200,not-a-number

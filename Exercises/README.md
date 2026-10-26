@@ -1,7 +1,7 @@
 # Hands-on exercises
 
-The exercises use only synthetic data and local tools. No cloud credentials,
-customer records, or company infrastructure are needed.
+The exercises use clearly identified illustrative data and local tools. No
+cloud credentials, customer records, or company infrastructure are needed.
 
 ## Daily operational event quality
 
@@ -9,6 +9,13 @@ Start with [Daily Event Quality](./Daily%20Event%20Quality/README.md). It
 provides a runnable SQLite-backed Bronze/Silver/Gold pipeline, expected
 aggregates, tests, and follow-up tasks for quarantine, alerting, and idempotent
 incremental loads.
+
+## DuckDB analytical warehouse
+
+Run the [DuckDB warehouse exercise](./DuckDB%20Warehouse/README.md) to ingest a
+local event extract, classify invalid and duplicate rows, build typed Silver
+records, and publish daily service metrics. The local DuckDB database and CSV
+outputs can be recreated from the same input.
 
 ## Suggested extensions for the existing case studies
 

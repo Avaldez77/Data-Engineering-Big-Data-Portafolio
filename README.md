@@ -11,7 +11,7 @@ production throughput or access to company systems.
 | --- | --- |
 | [Data Engineering](./Data%20Engineering/Data%20Engineering.md) | Relational and nested SQL, dimensional modeling, operational analytics, end-to-end analysis |
 | [Big Data](./Big%20Data/Big%20Data.md) | Market-basket analysis, operational logs, retail analytics, urban equity |
-| [Hands-on exercises](./Exercises/README.md) | Runnable Bronze/Silver/Gold event pipeline with quarantine, tests, and extension challenges |
+| [Hands-on exercises](./Exercises/README.md) | SQLite Bronze/Silver/Gold quality pipeline and DuckDB analytical warehouse, with quarantine and tests |
 
 ## Start with the runnable exercise
 
@@ -22,6 +22,10 @@ uses only Python's standard library and SQLite. From its directory:
 python run_demo.py
 python -m unittest discover -s tests -v
 ```
+
+The [DuckDB warehouse exercise](./Exercises/DuckDB%20Warehouse/README.md)
+uses a pinned DuckDB Python package and a local database; it does not require
+cloud access or external services.
 
 ## Working principles
 

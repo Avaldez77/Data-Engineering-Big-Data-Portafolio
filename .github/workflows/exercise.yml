@@ -12,8 +12,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install pinned exercise dependencies
+        run: python -m pip install -r requirements.txt
       - name: Run SQL pipeline tests
         run: python -m unittest discover -s "Exercises/Daily Event Quality/tests" -v
       - name: Run exercise
         working-directory: Exercises/Daily Event Quality
         run: python run_demo.py
+      - name: Run DuckDB warehouse tests
+        run: python -m unittest discover -s "Exercises/DuckDB Warehouse/tests" -v
+      - name: Run DuckDB warehouse
+        working-directory: Exercises/DuckDB Warehouse
+        run: python run_demo.py --output-dir ../../outputs/duckdb-demo
