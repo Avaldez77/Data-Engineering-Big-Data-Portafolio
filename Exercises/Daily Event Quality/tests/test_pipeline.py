@@ -16,6 +16,15 @@ class DailyEventQualityTests(unittest.TestCase):
         self.assertEqual(result["bronze_rows"], 7)
         self.assertEqual(result["silver_rows"], 3)
         self.assertEqual(
+            result["quarantine_rows"],
+            [
+                {"event_id": "evt-002", "reason": "superseded_duplicate"},
+                {"event_id": "evt-004", "reason": "blank_service"},
+                {"event_id": "evt-005", "reason": "invalid_timestamp"},
+                {"event_id": "evt-006", "reason": "invalid_duration"},
+            ],
+        )
+        self.assertEqual(
             result["gold_rows"],
             [
                 {

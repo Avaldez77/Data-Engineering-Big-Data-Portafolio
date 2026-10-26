@@ -1,36 +1,56 @@
 DROP TABLE IF EXISTS silver_events;
 
-CREATE TABLE silver_events AS
+DROP TABLE IF EXISTS quarantine_events;
+DROP TABLE IF EXISTS classified_events;
+
+CREATE TABLE classified_events AS
 WITH ranked_events AS (
     SELECT
-        event_id,
+        source_row,
+        TRIM(event_id) AS event_id,
         TRIM(service) AS service,
         LOWER(TRIM(event_type)) AS event_type,
         event_timestamp,
         duration_ms,
+        ingested_at,
         ROW_NUMBER() OVER (
-            PARTITION BY event_id
+            PARTITION BY COALESCE(NULLIF(TRIM(event_id), ''), CAST(source_row AS TEXT))
             ORDER BY ingested_at DESC, source_row DESC
         ) AS version_rank
     FROM bronze_events
-    WHERE event_id IS NOT NULL
-      AND TRIM(event_id) <> ''
 ),
-valid_events AS (
+event_classification AS (
     SELECT
+        source_row,
         event_id,
         service,
         event_type,
-        DATE(event_timestamp) AS event_date,
-        duration_ms
+        event_timestamp,
+        duration_ms,
+        version_rank,
+        CASE
+            WHEN event_id IS NULL OR event_id = '' THEN 'missing_event_id'
+            WHEN version_rank > 1 THEN 'superseded_duplicate'
+            WHEN service IS NULL OR service = '' THEN 'blank_service'
+            WHEN event_type IS NULL OR event_type NOT IN ('success', 'error')
+                THEN 'invalid_event_type'
+            WHEN DATE(event_timestamp) IS NULL THEN 'invalid_timestamp'
+            WHEN duration_ms IS NULL OR duration_ms < 0 THEN 'invalid_duration'
+            ELSE NULL
+        END AS rejection_reason
     FROM ranked_events
-    WHERE version_rank = 1
-      AND service <> ''
-      AND DATE(event_timestamp) IS NOT NULL
-      AND duration_ms >= 0
 )
-SELECT event_id, service, event_type, event_date, duration_ms
-FROM valid_events;
+SELECT * FROM event_classification;
+
+CREATE TABLE silver_events AS
+SELECT event_id, service, event_type, DATE(event_timestamp) AS event_date, duration_ms
+FROM classified_events
+WHERE rejection_reason IS NULL;
+
+CREATE TABLE quarantine_events AS
+SELECT source_row, event_id, rejection_reason
+FROM classified_events
+WHERE rejection_reason IS NOT NULL;
 
 DROP TABLE IF EXISTS gold_daily_service;
 

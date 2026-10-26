@@ -11,7 +11,7 @@ production throughput or access to company systems.
 | --- | --- |
 | [Data Engineering](./Data%20Engineering/Data%20Engineering.md) | Relational and nested SQL, dimensional modeling, operational analytics, end-to-end analysis |
 | [Big Data](./Big%20Data/Big%20Data.md) | Market-basket analysis, operational logs, retail analytics, urban equity |
-| [Hands-on exercises](./Exercises/README.md) | Runnable Bronze/Silver/Gold event pipeline, quality checks, and extension challenges |
+| [Hands-on exercises](./Exercises/README.md) | Runnable Bronze/Silver/Gold event pipeline with quarantine, tests, and extension challenges |
 
 ## Start with the runnable exercise
 
